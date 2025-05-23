@@ -4,12 +4,16 @@ function App() {
   const [input, setInput] = useState('');
   const [result, setResult] = useState({});
 
+  // Regular expression patterns for extracting specific data types
   const regexPatterns = {
     email: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g,
     url: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g,
     phone: /(?:\(\d{3}\)\s?|\d{3}[.-]?)\d{3}[.-]?\d{4}/g,
     creditCard: /\b(?:\d{4}[-\s]?){3}\d{4}\b/g,
-    time: /\b(1[0-2]|0?[1-9]):[0-5][0-9](\s?[APap][Mm])?|([01]?[0-9]|2[0-3]):[0-5][0-9]\b/g
+    time: /\b(1[0-2]|0?[1-9]):[0-5][0-9](\s?[APap][Mm])?|([01]?[0-9]|2[0-3]):[0-5][0-9]\b/g,
+    htmlTags: /<[^>]+>/g,
+    hashtags: /#\w+/g,
+    currency: /\$\d{1,3}(,\d{3})*(\.\d{2})?/g
   };
 
   const handleExtract = () => {
